@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using OpgaverApi.Sections.Contex;
+
 namespace OpgaverApi
 {
     public class Program
@@ -12,6 +15,9 @@ namespace OpgaverApi
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            //builder.Services.AddScoped<>
+            /* entity framework */
+            builder.Services.AddDbContextPool<CocktailContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("CocktailsServerConnection")));
 
             var app = builder.Build();
 
